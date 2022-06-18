@@ -1,6 +1,8 @@
 package com.example.fakturka.Company;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.client.RestTemplate;
@@ -12,21 +14,21 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Controller
+@RequestMapping("/company")
 public class CompanyController {
 
-    RestTemplate restTemplate = new RestTemplate();
-    @RequestMapping("/company")
-    public ModelAndView company(@RequestParam("nip") String nip){
+    private final CompanyService companyService;
+    @Autowired
+    public CompanyController(CompanyService companyService){
+        this.companyService =companyService;
+    }
+    @GetMapping
+    public ModelAndView getCompany(@RequestParam("nip") String nip){
 
         ModelAndView mv = new ModelAndView();
-        String url = "https://wl-api.mf.gov.pl/api/search/nip/";
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
 
-        String date = simpleDateFormat.format(new Date()).toString();
-        String fullUrl =url+nip+"?date="+date;
-       String response= restTemplate.getForObject(fullUrl,String.class);
-       mv.addObject("response",response);
-     mv.setViewName("result");
+       mv.addObject("response",this.companyService.getCompany(nip));
+        mv.setViewName("result");
        return mv;
     }
 
