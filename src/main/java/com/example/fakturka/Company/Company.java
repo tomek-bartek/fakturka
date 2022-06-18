@@ -3,8 +3,16 @@ package com.example.fakturka.Company;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 @Component
+@Entity
 public class Company {
+
+    @JsonProperty("nip")
+    @Id
+    private String cNip;
     @JsonProperty("name")
     private String cName;
 
@@ -12,8 +20,7 @@ public class Company {
     @JsonProperty("workingAddress")
     private String cAddress;
 
-    @JsonProperty("nip")
-    private String cNip;
+
 
     @JsonProperty("regon")
     private String cRegon;
