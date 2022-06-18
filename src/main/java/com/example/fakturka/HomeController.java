@@ -2,6 +2,7 @@ package com.example.fakturka;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,20 +14,18 @@ import java.util.Date;
 public class HomeController {
 
     @RequestMapping("/")
-    public String home(String companyName, HttpSession session){
+    public ModelAndView home(){
 
-        System.out.print("Hi");
-        return "home";
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("home");
+        return mv;
     }
 
     @RequestMapping("/first")
-    public String firstInvoice(HttpSession session){
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date date = new Date();
+    public ModelAndView firstInvoice(HttpSession session){
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName("first");
 
-        String dateStringToday = dateFormat.format(date);
-        session.setAttribute("today",dateStringToday);
-
-        return "first";
+        return mv;
     }
 }
