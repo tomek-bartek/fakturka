@@ -1,15 +1,20 @@
 package com.example.fakturka.Company;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
-
+import org.json.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Service
 public class CompanyService {
 
-    String getCompany(String nip){
+@Autowired
+Company company;
+    String getCompany(String nip) throws JsonProcessingException {
 
         RestTemplate restTemplate = new RestTemplate();
         String url = "https://wl-api.mf.gov.pl/api/search/nip/";
@@ -18,6 +23,12 @@ public class CompanyService {
         String date = simpleDateFormat.format(new Date()).toString();
         String fullUrl =url+nip+"?date="+date;
         String response= restTemplate.getForObject(fullUrl,String.class);
+
+
+        JSONObject obj = new JSONObject(response);
+        String result = obj.getJSONObject("result").getJSONObject("subject").getString("nip");
+
+        System.out.println(result);
         return response;
     }
 }

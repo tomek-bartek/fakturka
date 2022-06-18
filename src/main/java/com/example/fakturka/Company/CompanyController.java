@@ -1,5 +1,6 @@
 package com.example.fakturka.Company;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +24,7 @@ public class CompanyController {
         this.companyService =companyService;
     }
     @GetMapping
-    public ModelAndView getCompany(@RequestParam("nip") String nip){
+    public ModelAndView getCompany(@RequestParam("nip") String nip) throws JsonProcessingException {
 
         ModelAndView mv = new ModelAndView();
 
