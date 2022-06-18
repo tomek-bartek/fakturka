@@ -8,12 +8,27 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Firma o numerze nip: ${nip} </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Firma o numerze nip: ${cNip} </title>
 </head>
 <body>
-<h1>Oto dane szukanej firmy:</h1>
-<p>${response}</p>
+<div class="container">
+    <div class="row"><h1 class="display-1" class="display-1">Oto dane szukanej firmy:</h1></div>
+    <div class="row">  <h2>Pełna nazwa to:</h2>
+        <p>${cName}</p> </div>
+    <div class="row">  <h2>Numer NIP to:</h2>
+        <p>${cNip}</p> </div>
+    <div class="row"><h2>Adres firmy to:</h2>
+        <p>${cAddress}</p></div>
+    <div class="row"><h2>Numer REGON to:</h2>
+        <p>${cRegon}</p></div>
 
-<a href="/first">Sprawdź następną firmę</a>
+
+
+
+
+<a href="/first" class="btn btn-primary">Sprawdź następną firmę</a>
+
+</div>
 </body>
 </html>

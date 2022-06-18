@@ -28,7 +28,10 @@ public class CompanyController {
 
         ModelAndView mv = new ModelAndView();
 
-       mv.addObject("response",this.companyService.getCompany(nip));
+        mv.addObject("cNip",companyService.getCompany(nip).getcNip());
+        mv.addObject("cName",companyService.getCompany(nip).getcName());
+        mv.addObject("cAddress",companyService.getCompany(nip).getcAddress());
+        mv.addObject("cRegon",companyService.getCompany(nip).getcRegon());
         mv.setViewName("result");
        return mv;
     }

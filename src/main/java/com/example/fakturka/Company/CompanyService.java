@@ -14,7 +14,7 @@ public class CompanyService {
 
 @Autowired
 Company company;
-    String getCompany(String nip) throws JsonProcessingException {
+    Company getCompany(String nip) throws JsonProcessingException {
 
         RestTemplate restTemplate = new RestTemplate();
         String url = "https://wl-api.mf.gov.pl/api/search/nip/";
@@ -26,9 +26,12 @@ Company company;
 
 
         JSONObject obj = new JSONObject(response);
-        String result = obj.getJSONObject("result").getJSONObject("subject").getString("nip");
 
-        System.out.println(result);
-        return response;
+        company.setcNip(obj.getJSONObject("result").getJSONObject("subject").getString("nip"));
+        company.setcAddress(obj.getJSONObject("result").getJSONObject("subject").getString("workingAddress"));
+        company.setcName(obj.getJSONObject("result").getJSONObject("subject").getString("name"));
+        company.setcRegon(obj.getJSONObject("result").getJSONObject("subject").getString("regon"));
+
+        return company;
     }
 }
