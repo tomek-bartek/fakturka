@@ -21,7 +21,6 @@ public class Company {
     private String cAddress;
 
 
-
     @JsonProperty("regon")
     private String cRegon;
 
