@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.json.*;
+
+import java.net.http.HttpRequest;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
@@ -43,11 +45,11 @@ Company company;
     }
 
     public List<Company> getCompanies(){
-    return List.of(
-            new Company("1","adres","nip","regon"),
-            new Company("2","adres","nip","regon"),
-            new Company("3","adres","nip","regon")
+    return companyRepository.findAll();
+    }
 
-    );
+    public void addCompany(Company company){
+
+    companyRepository.save(company);
     }
 }

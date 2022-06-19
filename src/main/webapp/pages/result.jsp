@@ -26,8 +26,20 @@
 
 
 
+<div class="row">
+    <span class="col-2"><a href="/first" class="btn btn-primary">Sprawdź następną firmę</a></span>
+    <span class="col-2">
+        <form action="/addCompany" method="post">
+        <input type="hidden" id="nip" name="nip" value="${cNip}">
+        <input class="btn btn-primary" type="submit" value="Dodaj firmę do listy">
 
-<a href="/first" class="btn btn-primary">Sprawdź następną firmę</a>
+    </form>
+    </span>
+
+</div>
+
+
+
 
 </div>
 </body>

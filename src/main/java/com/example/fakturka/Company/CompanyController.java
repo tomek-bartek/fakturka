@@ -4,10 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -19,7 +16,6 @@ import java.util.Date;
 import java.util.List;
 
 @Controller
-
 public class CompanyController {
 
     private final CompanyService companyService;
@@ -50,6 +46,15 @@ public class CompanyController {
       return mv2;
     }
 
+
+    @PostMapping("/addCompany")
+    public ModelAndView addCompany(@RequestParam("nip") String nip) throws JsonProcessingException {
+        companyService.addCompany(companyService.getCompany(nip));
+    ModelAndView mv3 = new ModelAndView();
+    mv3.addObject("listOfCompanies",companyService.getCompanies());
+    mv3.setViewName("allCompanies");
+    return mv3;
+}
 
 
 }
